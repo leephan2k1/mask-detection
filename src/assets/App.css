@@ -1,0 +1,134 @@
+:root {
+  --main-color: #505458;
+}
+*,
+html {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.main.not-mask {
+  background-color: none;
+  animation: changeColors infinite 0.5s;
+}
+@keyframes changeColors {
+  from {
+    background-color: inherit;
+  }
+  to {
+    background-color: #d2122e;
+  }
+}
+.header {
+  width: 100%;
+  height: 20%;
+  background-color: var(--main-color);
+  border-radius: 0 0 90px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: sans-serif;
+  color: #fff;
+}
+.header-title {
+  text-align: center;
+  font-weight: lighter;
+  min-width: 100%;
+  font-size: 150%;
+  z-index: 5;
+}
+.logo {
+  width: 10rem;
+  height: 10rem;
+  margin-bottom: 1rem;
+}
+.header::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  left: -5px;
+  bottom: -150px;
+  height: 150px;
+  width: 100px;
+  border-top-left-radius: 90px;
+  box-shadow: 0 -75px 0 0 var(--main-color);
+}
+@media only screen and (max-width: 46.1875em) {
+  #alert {
+    text-align: center;
+    margin: auto 0;
+    font-weight: lighter;
+    display: block;
+  }
+  .header-title {
+    color: #fb8e09;
+    margin-bottom: 1.5rem;
+  }
+}
+@media only screen and (max-width: 180px) {
+  .header::before {
+    display: none;
+  }
+}
+
+.video {
+  width: 480px;
+  height: 360px;
+  margin-top: 15px;
+  background-color: var(--main-color);
+  border-radius: 15px;
+}
+.control {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 50%;
+  height: fit-content;
+  font-size: 2rem;
+}
+.active {
+  display: flex;
+}
+.step .step-message {
+  width: 100%;
+  height: 100%;
+}
+.btn {
+  margin-left: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: var(--main-color);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.state {
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  transform: scale(110%);
+}
