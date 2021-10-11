@@ -16,7 +16,7 @@ export default function Footer() {
             <p className="author-desc">Voice actor, Present</p>
           </div>
           <div className="col l-3 m-6 c-12">
-            <img className="author" src="./images/khiem.jpg" alt="khiem" />
+            <img className="author" src="./images/Khiem.jpg" alt="khiem" />
             <p className="author-desc">Slide design</p>
           </div>
           <div className="col l-3 m-6 c-12">
