@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 const blazeface = require("@tensorflow-models/blazeface");
 const NOT_MASK_LABEL = "Not_mask";
 const MASKED_LABEL = "masked";
-const TRAINING_TIMES = 30;
+const TRAINING_TIMES = 100;
 const MASKED_CONFIDENCES = 0.8;
 
 export default function Control(props) {
