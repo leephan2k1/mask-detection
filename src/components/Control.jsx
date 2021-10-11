@@ -1,9 +1,10 @@
 import * as tf from "@tensorflow/tfjs";
 import { initNotifications, notify } from "@mycv/f8-notification";
 import { useState, useEffect } from "react";
+const blazeface = require("@tensorflow-models/blazeface");
 const NOT_MASK_LABEL = "Not_mask";
 const MASKED_LABEL = "masked";
-const TRAINING_TIMES = 100;
+const TRAINING_TIMES = 30;
 const MASKED_CONFIDENCES = 0.8;
 
 export default function Control(props) {
@@ -25,8 +26,13 @@ export default function Control(props) {
   const run = async () => {
     const embedding = props.mobilenet.current.infer(props.video.current, true);
     const result = await props.classifier.current.predictClass(embedding);
-    // console.log("Label: ", result.label);
-    // console.log("Labconfidencesel: ", result.confidences);
+
+    // Check khuôn mặt.
+    const model = await blazeface.load();
+    const predictions = await model.estimateFaces(
+      document.querySelector(".video"),
+      false
+    );
     setMessage("Hệ thống đang chạy");
     setStateProgress(true);
     if (
@@ -34,16 +40,21 @@ export default function Control(props) {
       result.confidences[result.label] > MASKED_CONFIDENCES
     ) {
       console.log("MASKED");
+      console.log("FACE", predictions);
       props.setMask(true);
     } else {
-      console.log("NOT MASK");
-      props.setMask(false);
-      notify("Đeo khẩu trang vô bạn ey!", { body: "Khẩu trang đâu hả??" });
-      if (props.canPlaySound.current) {
-        props.canPlaySound.current = false;
-        props.audio.play();
+      if (predictions.length > 0) {
+        console.log("NOT MASK");
+        console.log("FACE", predictions);
+        props.setMask(false);
+        notify("Đeo khẩu trang vô bạn ey!", { body: "Khẩu trang đâu hả??" });
+        if (props.canPlaySound.current) {
+          props.canPlaySound.current = false;
+          props.audio.play();
+        }
       }
     }
+
     await sleep(200);
     run();
   };

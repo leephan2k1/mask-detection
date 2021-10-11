@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@mycv/f8-notification": "^1.0.1",
+    "@tensorflow-models/blazeface": "0.0.7",
     "@tensorflow-models/knn-classifier": "^1.2.2",
     "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^3.9.0",

@@ -1,10 +1,13 @@
 import { Howl } from "howler";
 import React, { useEffect, useRef, useState } from "react";
+import "./assets/grid.css";
 import "./assets/App.css";
 import soundURL from "./assets/sound2.mp3";
 import Control from "./components/Control";
 import Header from "./components/Header";
 import Video from "./components/Video";
+import Footer from "./components/Footer";
+
 const mobilenet = require("@tensorflow-models/mobilenet");
 const knnClassifier = require("@tensorflow-models/knn-classifier");
 
@@ -13,7 +16,6 @@ let sound = new Howl({
 });
 
 // sound.play();
-
 function App() {
   const video = useRef();
   const classifier = useRef();
@@ -26,11 +28,11 @@ function App() {
     //Khoi tao camera
     console.log("init camera...");
     await setUpCamera();
-
-    console.log("init camera success");
+    //Nhan dien khuon mat
 
     classifier.current = knnClassifier.create();
     mobilenetModule.current = await mobilenet.load();
+
     console.log(">>> check setup !");
     setIsSuccess(true);
   };
@@ -79,8 +81,8 @@ function App() {
           video={video}
         />
       )}
-
       <Video video={video} />
+      <Footer />
     </div>
   );
 }
