@@ -12,22 +12,27 @@ export default function Control(props) {
   const [stateProgress, setStateProgress] = useState(false);
   const [activeSwitch, setActiveSwitch] = useState(0);
   initNotifications({ cooldown: 3000 });
+
   const training = (label) => {
     return new Promise(async (resolve) => {
       const embedding = props.mobilenet.current.infer(
         props.video.current,
         true
       );
+      //Set label cho KNN ánh xạ trên trạng thái.
       props.classifier.current.addExample(embedding, label);
       await sleep(100);
       resolve();
     });
   };
+
   const run = async () => {
+    //Lấy database hình ảnh
     const embedding = props.mobilenet.current.infer(props.video.current, true);
+    //Phân tích hình ảnh dựa trên KNN
     const result = await props.classifier.current.predictClass(embedding);
 
-    // Check khuôn mặt.
+    // Check khuôn mặt cho tình huống không có trong khung nhận diện.
     const model = await blazeface.load();
     const predictions = await model.estimateFaces(
       document.querySelector(".video"),

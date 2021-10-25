@@ -15,12 +15,12 @@ export default function Footer() {
           <div className="col l-3 m-6 c-12">
             <img className="author" src="./images/ngan.jpg" alt="ngan" />
             <p>Thiện Ngân</p>
-            <p className="author-desc">Voice actor, Present</p>
+            <p className="author-desc">Voice actor, Presented</p>
           </div>
           <div className="col l-3 m-6 c-12">
             <img className="author" src="./images/Khiem.jpg" alt="khiem" />
             <p>Trọng Khiêm</p>
-            <p className="author-desc">Slide design</p>
+            <p className="author-desc">Slide design, Presented</p>
           </div>
           <div className="col l-3 m-6 c-12">
             <img className="author" src="./images/Nhan.jpg" alt="Nhan" />
@@ -29,10 +29,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="tech-desc">
+      {/* <div className="tech-desc">
         Tech: ReactJS, Tensorflow (mobilenet, knnClassifier, Blazeface
-        detector), NodeJS(Howl, notification-F8)
-      </div>
+        detector), Howl, notification-F8
+      </div> */}
     </footer>
   );
 }
