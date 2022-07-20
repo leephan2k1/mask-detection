@@ -64,6 +64,7 @@ function App() {
     sound.on("end", function () {
       canPlaySound.current = true;
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

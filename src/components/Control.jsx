@@ -1,6 +1,5 @@
-import * as tf from "@tensorflow/tfjs";
 import { initNotifications, notify } from "@mycv/f8-notification";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 const blazeface = require("@tensorflow-models/blazeface");
 const NOT_MASK_LABEL = "Not_mask";
 const MASKED_LABEL = "masked";
@@ -63,6 +62,7 @@ export default function Control(props) {
     await sleep(200);
     run();
   };
+
   const train = async (label) => {
     console.log(`${label} Đang training cho máy học cái bản mặt của bạn!...`);
     setStateProgress(true);
@@ -78,9 +78,11 @@ export default function Control(props) {
     setActiveSwitch(activeSwitch + 1);
     setStateProgress(false);
   };
+
   const sleep = (ms) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   };
+
   useEffect(() => {
     switch (activeSwitch) {
       case 0:
@@ -95,8 +97,11 @@ export default function Control(props) {
       case 2:
         setMessage(`Hệ thống sẽ bắt đầu theo dõi`);
         break;
+      default:
+        console.log("something wrong!");
     }
   }, [activeSwitch]);
+
   return (
     <div className="control">
       {activeSwitch === 0 ? (
